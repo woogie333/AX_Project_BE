@@ -18,7 +18,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws-stock")  // SockJS 제거
-                .setAllowedOriginPatterns("*");
+        registry.addEndpoint("/ws-stock")
+                .setAllowedOriginPatterns("*"); // ★ 프론트엔드의 접근을 허락한다는 뜻!
     }
 }

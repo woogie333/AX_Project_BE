@@ -18,7 +18,7 @@ public class StockScheduler {
         this.stockService = stockService;
     }
 
-    @Scheduled(fixedDelay = 1000)
+    @Scheduled(fixedDelay = 3000)
     public void pushStockPrices() {
         StockPrice price = stockService.getLatestPrice("005930");
         messagingTemplate.convertAndSend("/topic/stock/005930", price);

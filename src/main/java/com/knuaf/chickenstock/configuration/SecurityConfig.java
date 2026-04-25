@@ -42,7 +42,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/login", "/api/join", "/h2-console/**", "/error").permitAll()
+                        .requestMatchers("/api/login", "/api/join", "/h2-console/**", "/error", "/ws-stock/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider, refreshTokenRepository),
@@ -57,7 +57,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         // 허용할 프론트엔드 도메인 (예: 리액트 기본 포트 3000, 뷰 5173 등) -> 실제 베포할때는 도메인 주소 넣기
-        configuration.setAllowedOrigins(List.of("http://localhost:3000", "http://localhost:8080"));
+        configuration.setAllowedOrigins(List.of("http://localhost:3000", "http://localhost:5173"));
 
         // 허용할 HTTP 메서드 (GET, POST, PUT, DELETE, OPTIONS 등) -> 그래도 오류 발생시 *List.of(*)
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
