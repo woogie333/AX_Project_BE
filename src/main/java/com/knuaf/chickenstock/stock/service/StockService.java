@@ -43,8 +43,8 @@ public class StockService {
             // 토큰을 받기 위해 보내야 하는 Body 데이터 세팅
             Map<String, String> body = new HashMap<>();
             body.put("grant_type", "client_credentials");
-            body.put("key", apiKey);
-            body.put("secret", apiSecret);
+            body.put("appkey", apiKey);
+            body.put("appsecret", apiSecret);
 
             // POST 요청으로 토큰 발급 API 찌르기
             String response = webClient.post()
@@ -80,8 +80,8 @@ public class StockService {
                     .uri("/uapi/domestic-stock/v1/quotations/inquire-price?FID_COND_MRKT_DIV_CODE=J&FID_INPUT_ISCD=" + symbol)
                     // ★ 핵심: KIS 서버가 요구하는 Bearer 토큰 헤더 추가
                     .header("authorization", "Bearer " + accessToken)
-                    .header("key", apiKey)
-                    .header("secret", apiSecret)
+                    .header("appkey", apiKey)
+                    .header("appsecret", apiSecret)
                     .header("tr_id", "FHKST01010100")
                     .retrieve()
                     .bodyToMono(String.class)
