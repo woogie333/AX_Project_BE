@@ -13,4 +13,3 @@ COPY --from=build /app/build/libs/*.jar app.jar
 
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
-[ec2-user@ip-172-31-39-96 AX_Project_BE]$
